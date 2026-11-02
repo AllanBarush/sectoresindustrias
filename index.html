@@ -78,6 +78,7 @@ ul.aud{list-style:none}ul.aud li{font-size:15px;padding:8px 0 8px 22px;position:
   #rm-enroll select option,#rm-enroll option{color:#111 !important;background-color:#fff !important}
 }
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"><style id="upd-movil-2nov">.barra{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;}@media (max-width:560px){#rm-enroll #rm-paypal,#rm-enroll #rm-stripe{white-space:normal !important;}#rm-enroll div[style*="padding:44px 42px"]{padding:40px 22px !important;}}#rm-enroll .iti__dial-code,.iti--container .iti__dial-code{color:#5C6880;}.iti--container .iti__country-list{color:#1b2430;}</style>
 </head><body>
 
 <header class="hero"><div class="wrap">
@@ -143,13 +144,13 @@ ul.aud{list-style:none}ul.aud li{font-size:15px;padding:8px 0 8px 22px;position:
  <form id="rm-lead" onsubmit="return rmSubmit(event)" style="display:grid;gap:22px;">
  <div><label class="rm-lb">Nombre(s)</label><input class="rm-in" name="nombre" required></div>
  <div class="rm-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:22px 20px;">
- <div><label class="rm-lb">Apellido paterno</label><input class="rm-in" name="apellido_paterno" required></div>
+ <div><label class="rm-lb">Apellido paterno</label><input class="rm-in" name="apellido_paterno"></div>
  <div><label class="rm-lb">Apellido materno</label><input class="rm-in" name="apellido_materno"></div>
  </div>
  <div><label class="rm-lb">Tipo de registro</label>
- <select class="rm-in" name="tipo_interes" required onchange="var individual=this.value==='individual',form=this.form;['puesto','empresa','sector'].forEach(function(name){var field=form.elements[name];if(field)field.required=!individual;});">
- <option value="" disabled selected></option>
- <option value="individual">Inscripción individual</option>
+ <select class="rm-in" name="tipo_interes" onchange="var individual=this.value==='individual',form=this.form;['puesto','empresa','sector'].forEach(function(name){var field=form.elements[name];if(field)field.required = false;});">
+ <option value="" disabled></option>
+ <option value="individual" selected>Inscripción individual</option>
  <option value="grupo">Grupo o delegación</option>
  <option value="licencia_corporativa">Licencia corporativa</option>
  </select>
@@ -157,11 +158,11 @@ ul.aud{list-style:none}ul.aud li{font-size:15px;padding:8px 0 8px 22px;position:
  </div>
  <div><label class="rm-lb">Email corporativo o institucional</label><input class="rm-in" type="email" name="email" required></div>
  <div class="rm-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:22px 20px;">
- <div><label class="rm-lb">Puesto</label><input class="rm-in" name="puesto" required></div>
- <div><label class="rm-lb">Institución / Empresa</label><input class="rm-in" name="empresa" required></div>
+ <div><label class="rm-lb">Puesto</label><input class="rm-in" name="puesto"></div>
+ <div><label class="rm-lb">Institución / Empresa</label><input class="rm-in" name="empresa"></div>
  </div>
  <div><label class="rm-lb">Sector financiero / industria</label>
- <select class="rm-in" name="sector" required>
+ <select class="rm-in" name="sector">
  <option value="" disabled selected></option>
  <option>AFORE / Fondos de Pensión</option>
  <option>Aseguradora / Insurance</option>
@@ -179,7 +180,7 @@ ul.aud{list-style:none}ul.aud li{font-size:15px;padding:8px 0 8px 22px;position:
  </div>
  <div class="rm-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:22px 20px;">
  <div><label class="rm-lb">País</label>
- <select class="rm-in" name="pais" required>
+ <select class="rm-in" name="pais">
  <option value="" disabled data-iso=""></option>
  <option data-iso="mx" selected>México</option>
  <option data-iso="us">Estados Unidos</option>
@@ -219,7 +220,7 @@ ul.aud{list-style:none}ul.aud li{font-size:15px;padding:8px 0 8px 22px;position:
  <div style="margin-top:34px;padding-top:28px;border-top:1px solid #edf0f5;text-align:center;">
  <div style="font-size:10px;color:#5C6880;letter-spacing:2.2px;font-family:'Poppins',Arial,sans-serif;">O INSCRÍBETE Y PAGA DIRECTO</div>
  <div style="font-size:30px;font-weight:300;color:#A8501F;margin:14px 0 2px;font-family:'Poppins',Arial,sans-serif;letter-spacing:.5px;">MXN $28,500 <span style="font-size:15px;font-weight:400;color:#5C6880;letter-spacing:.5px;">+ TAX</span></div>
- <div style="font-size:11px;color:#5C6880;font-family:'Lora',Georgia,serif;font-style:italic;margin-bottom:18px;">MXN $28,500 · 6 clases · 15 horas</div>
+ <div style="font-size:11px;color:#5C6880;font-family:'Lora',Georgia,serif;font-style:italic;margin-bottom:18px;">MXN $28,500 + TAX · 6 clases · 15 horas</div>
  <div style="display:grid;gap:10px;">
  <a id="rm-paypal" href="https://bffdsgvgcvmojobfiuay.supabase.co/functions/v1/paypal-pay?curso=sectoresindustrias" target="_blank" rel="noopener" style="background:#A8501F;color:#ffffff;font-weight:600;font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;padding:15px;border-radius:4px;text-decoration:none;white-space:nowrap;font-family:'Poppins',Arial,sans-serif;">Pagar con PayPal</a>
  <a id="rm-stripe" href="https://buy.stripe.com/8x26oz47d3iw4openv2RA3U" target="_blank" rel="noopener" style="background:transparent;border:1.5px solid #A8501F;color:#A8501F;font-weight:600;font-size:12.5px;letter-spacing:1.6px;text-transform:uppercase;padding:14px;border-radius:4px;text-decoration:none;white-space:nowrap;font-family:'Poppins',Arial,sans-serif;">Pagar con tarjeta · Stripe</a>
